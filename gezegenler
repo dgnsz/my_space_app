@@ -227,8 +227,8 @@ class PlanetPage extends StatelessWidget {
             flex: 2,
             child: Image.asset(
               planetImage,
-              fit: BoxFit.contain, // Gezegen resmini boyutlandırma yöntemi
-              width: MediaQuery.of(context).size.width * 0.8, // Genişlik ayarı
+              fit: BoxFit.contain,
+              width: MediaQuery.of(context).size.width * 0.8,
             ),
           ),
           Expanded(
@@ -281,7 +281,7 @@ class PlanetDetailPage extends StatelessWidget {
           children: [
             SizedBox(height: MediaQuery.of(context).padding.top),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.4, // Resim için alan ayırma
+              height: MediaQuery.of(context).size.height * 0.4,
               child: Image.asset(
                 planetImage,
                 fit: BoxFit.cover,
