@@ -1,0 +1,312 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Gezegenler'),
+        backgroundColor: Colors.lightBlueAccent,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.lightBlueAccent,
+              ),
+              child: Text(
+                'Gezegenler',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Merkür'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 0)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Venüs'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 1)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Dünya'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 2)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Mars'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 3)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Jüpiter'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 4)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Satürn'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 5)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Uranüs'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 6)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Neptün'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 7)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Plüton'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 8)),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Stack(
+        children: [
+          Image.asset(
+            'assets/photos/uzay.jpeg',
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            fit: BoxFit.cover,
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Uzayı Keşfetmeye',
+                  style: TextStyle(fontSize: 32, color: Colors.white),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PlanetsPage(initialPage: 0)),
+                    );
+                  },
+                  child: Text('Başlayın'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PlanetsPage extends StatelessWidget {
+  final int initialPage;
+
+  PlanetsPage({required this.initialPage});
+
+  final List<String> planetNames = ['Merkür', 'Venüs', 'Dünya', 'Mars', 'Jüpiter', 'Satürn', 'Uranüs', 'Neptün', 'Plüton'];
+  final List<String> planetImages = [
+    'assets/photos/merkur.png',
+    'assets/photos/venus.png',
+    'assets/photos/dunya.png',
+    'assets/photos/mars.png',
+    'assets/photos/jupiter.png',
+    'assets/photos/saturn.png',
+    'assets/photos/uranus.png',
+    'assets/photos/neptun.png',
+    'assets/photos/pluton.png'
+  ];
+  final List<String> planetInfos = [
+    'Merkür, Güneş Sistemi\'ndeki en küçük ve Güneş\'e en yakın gezegendir. \n\nYüzeyi kraterlerle doludur ve Ay\'a benzer bir görünüme sahiptir. \n\nSıcaklık dalgalanmaları diğer gezegenlere göre çok daha fazladır. \n\nSadece iki uzay aracı tarafından ziyaret edildi.',
+    'Venüs, Güneş Sistemi\'ndeki ikinci gezegendir. \n\nAyrıca, Güneş Sistemi\'nde yörüngesi çembere en yakın olan gezegendir. \n\nYüzey sıcaklığı ortalama 462°C ile Güneş Sistemi’nin en sıcak gezegeni. \n\n“Dünya’nın kardeşi” olarak adlandırılır.',
+    'Dünya, Güneş Sistemi\'ndeki yaşam barındıran gezegendir. \n\nYüzeyi okyanuslar, kara parçaları ve buzullarla kaplıdır. \n\nYaklaşık 71%\'ini su oluşturur.',
+    'Kızıl gezegen olarak da bilinen Mars, yüzeyinde eski kurumuş nehir yatakları ve volkanik dağlar barındırır. \n\nYüzeyinde devasa toz fırtınaları görülür. \n\nGüneş Sistemi\'nde Dünya\'dan sonra yaşama en uygun gezegen.',
+    'Güneş Sistemi\'nin en büyük gezegeni olan Jüpiter, gaz devi olarak kayalık bir yapı yerine gazlardan oluşur. \n\n67 adet uydusu bulunur. \n\nBüyük Kırmızı Leke adı verilen devasa bir fırtına sistemi ile ünlüdür.',
+    'Güneş Sistemi\'ndeki en belirgin halkalara sahip gezegendir. \n\nHalkaları aslında buz ve kaya parçacıklarından oluşur \n\n39 araçtan sadece 16\'sı başarılı bir şekilde Satürn\'ü ziyaret etti.',
+    'Uranüs, yatay eğik bir eksende dönen tek gezegendir. \n\nMavi renkli atmosferi ve buzlu bileşimiyle dikkat çeker. \n\nGüneş Sistemi\'ndeki en soğuk gezegenlerden biridir.',
+    'Güneş Sistemi\'ndeki en uzak ve en soğuk gezegendir. \n\nYüzey sıcaklığı ortalama -214°C\'dir. \n\nRüzgarlarla kaplı mavi bir dev gezegen olan Neptün, büyük bir koyu lekeye sahiptir. \n\n14 adet bilinen uydusu ve halka sistemi vardır.',
+    '1930 yılında keşfedilen ve o zamandan beri birçok tartışmaya konu olan Plüton, artık cüce gezegen olarak kabul edilir. \n\nGezegenlik statüsünden çıkarılmasının başlıca nedeni diğer gezegenlerin sahip olduğu niteliklere sahip olmamasıdır. \n\nYörüngesini tamamlaması için 248 yıl gerekir. \n\nKütle ve hacim olarak Ay\'ın yaklaşık beşte biri kadardır.'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageView.builder(
+        itemCount: planetNames.length,
+        itemBuilder: (BuildContext context, int index) {
+          return PlanetPage(
+            planetName: planetNames[index],
+            planetImage: planetImages[index],
+            planetInfo: planetInfos[index],
+          );
+        },
+        controller: PageController(
+          initialPage: initialPage,
+          viewportFraction: 0.85,
+        ),
+      ),
+    );
+  }
+}
+
+class PlanetPage extends StatelessWidget {
+  final String planetName;
+  final String planetImage;
+  final String planetInfo;
+
+  PlanetPage({required this.planetName, required this.planetImage, required this.planetInfo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(planetName),
+        backgroundColor: Colors.white,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Image.asset(
+              planetImage,
+              fit: BoxFit.contain, // Gezegen resmini boyutlandırma yöntemi
+              width: MediaQuery.of(context).size.width * 0.8, // Genişlik ayarı
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 20),
+                  Text(
+                    'Daha fazlası için',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PlanetDetailPage(planetName: planetName, planetImage: planetImage, planetInfo: planetInfo)),
+                      );
+                    },
+                    child: Text('Tıklayın'),
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PlanetDetailPage extends StatelessWidget {
+  final String planetName;
+  final String planetImage;
+  final String planetInfo;
+
+  PlanetDetailPage({required this.planetName, required this.planetImage, required this.planetInfo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(planetName),
+        backgroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: MediaQuery.of(context).padding.top),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4, // Resim için alan ayırma
+              child: Image.asset(
+                planetImage,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Gezegen hakkında bilgiler:',
+                    style: TextStyle(fontSize: 32),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    planetInfo,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
